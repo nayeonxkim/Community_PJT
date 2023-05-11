@@ -1,17 +1,25 @@
 <template>
   <div>
     <h1>Index</h1>
-    <p>{{articles}}</p>
+    <ArticleList />
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import ArticleList from '@/components/ArticleList.vue'
 
 export default {
   name:'IndexView',
-  computed:{
-      ...mapState(['articles']),
+  components:{
+    ArticleList
+  },
+  methods:{
+    getArticles(){
+      this.$store.dispatch('getArticles')
+    }
+  },
+  created(){
+    this.getArticles()
   }
 
 }
